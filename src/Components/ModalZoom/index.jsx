@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Imagem from "../Galeria/Imagem";
-import CloseIcon from '@mui/icons-material/Close';
+import { useEffect, useState } from "react";
 
 const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
@@ -17,29 +17,43 @@ const DialogEstilizado = styled.dialog`
   padding: 0;
   border: 0;
   background: transparent;
-  display: flex;
-  justify-content: center;
+  form {
+    button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 0;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
 `
 
-const ButtonFechar = styled.button`
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    padding: 0;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-`
+const ModalZoom = ({foto, aoAlternarFavorito}) => {
 
-const ModalZoom = ({foto}) => {
+  const [modalAberto, setModalAberto] = useState(false);
+
+  useEffect(() => { 
+    if (foto ) {
+      setModalAberto(true)
+    }
+  }, [foto]);
+
+  const fecharModal = () => {
+    setModalAberto(false)
+  }
+
   return (
     <>
-      {foto && <>
+      {foto && modalAberto && <>
       <Overlay />
       <DialogEstilizado open={!!foto}>
-        <Imagem foto={foto} expandida={true} />
+        <Imagem foto={foto} expandida={true} aoAlternarFavorito={aoAlternarFavorito}/>
         <form method="dialog">
-          <ButtonFechar type="submit"><CloseIcon fontSize="medium" style={{color: "#fff"}}/> </ButtonFechar>
+          <button type="submit" onClick={fecharModal}>
+            <img src="/icones/fechar.png" alt="fechar" />
+          </button>
           </form>
       </DialogEstilizado>
       </>}
