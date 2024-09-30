@@ -1,4 +1,4 @@
-## Projeto em React com Styled Components
+## Space App - Projeto em React com Styled Components
 
 Este projeto foi desenvolvido durante um curso da Alura para praticar as habilidades em React e Styled Components. O objetivo é criar uma aplicação que utilize a biblioteca de estilização em conjunto com os conceitos fundamentais do React.
 
