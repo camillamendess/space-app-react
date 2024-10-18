@@ -1,40 +1,50 @@
-import tags from './tags.json';
-import styled from 'styled-components';
+import tags from "./tags.json";
+import styled from "styled-components";
 
-const TagContainer = styled.div`
+const BarraTags = styled.div`
   display: flex;
-  margin-top: 24px;
-`
-
-const TagTitulo = styled.p`
-  color: #D9D9D9;
+  align-items: center;
+  gap: 64px;
+  margin-top: 56px;
+`;
+const TituloTags = styled.p`
+  color: #d9d9d9;
   font-size: 24px;
-  margin-right: 24px;
-`
-
+  margin: 0;
+`;
 const Tag = styled.button`
   font-size: 24px;
-  background: rgba(217, 217, 217, 0.3);
+  color: #ffffff;
+  background-color: rgba(217, 217, 217, 0.3);
+  cursor: pointer;
   transition: background-color 0.3s ease;
   padding: 12px;
   box-sizing: border-box;
-  color: #fff;
   border-radius: 10px;
-  margin: 12px 5px;
-  cursor: pointer;
-  border: 2px solid transparent;
+  border-color: transparent;
   &:hover {
-    border-color: #C98CF1;
+    border-color: #c98cf1;
   }
-`
+`;
+const Div = styled.div`
+  display: flex;
+  gap: 24px;
+  justify-content: end;
+`;
 
-const Tags = () => { 
-    return (
-      <TagContainer>
-        <TagTitulo>Busque por tags:</TagTitulo>
-        {tags.map(tag => <Tag key={tag.id}>{tag.titulo}</Tag>)}
-      </TagContainer>
-    )
-}
+const Tags = ({ setTag }) => {
+  return (
+    <BarraTags>
+      <TituloTags>Busque por tags:</TituloTags>
+      <Div>
+        {tags.map((tag) => (
+          <Tag key={tag.id} onClick={() => setTag(tag.tag)}>
+            {tag.titulo}
+          </Tag>
+        ))}
+      </Div>
+    </BarraTags>
+  );
+};
 
 export default Tags;
