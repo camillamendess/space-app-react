@@ -18,9 +18,10 @@ const ItemNavegacao = ({
   iconeAtivo,
   iconeInativo,
   ativo = false,
+  onClick,
 }) => {
   return (
-    <ItemListaEstilizado $ativo={ativo}>
+    <ItemListaEstilizado $ativo={ativo} onClick={onClick}>
       <img src={ativo ? iconeAtivo : iconeInativo} alt="Icone" />
       {children}
     </ItemListaEstilizado>
